@@ -1,26 +1,27 @@
-package hello.advaned.app.v2;
+package hello.advaned.app.v3;
 
 import hello.advaned.trace.TraceId;
 import hello.advaned.trace.TraceStatus;
-import hello.advaned.trace.hellotrace.HelloTraceV1;
 import hello.advaned.trace.hellotrace.HelloTraceV2;
+import hello.advaned.trace.logtrace.FieldLogTrace;
+import hello.advaned.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class OrderServiceV2 {
+public class OrderServiceV3 {
 
-    private final OrderRepositoryV2 orderRepository;
-    private final HelloTraceV2 trace;
+    private final OrderRepositoryV3 orderRepository;
+    private final LogTrace trace;
 
-    public void orderItem(TraceId traceId, String itemId) {
+    public void orderItem(String itemId) {
 
         TraceStatus status = null;
 
         try {
-            status = trace.beginSync(traceId, "OrderService.orderItem()");
-            orderRepository.save(status.getTraceId(), itemId);
+            status = trace.begin("OrderService.orderItem()");
+            orderRepository.save(itemId);
             trace.end(status);
         } catch (Exception e) {
             trace.exception(status, e);
