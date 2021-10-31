@@ -1,4 +1,4 @@
-package hello.advaned.app.v1;
+package hello.advaned.app.v0;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

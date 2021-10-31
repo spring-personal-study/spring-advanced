@@ -1,6 +1,5 @@
-package hello.advaned.app.v0;
+package hello.advaned.app.v1;
 
-import hello.advaned.trace.TraceId;
 import hello.advaned.trace.TraceStatus;
 import hello.advaned.trace.hellotrace.HelloTraceV1;
 import lombok.RequiredArgsConstructor;
