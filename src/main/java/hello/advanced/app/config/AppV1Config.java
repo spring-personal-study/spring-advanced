@@ -1,4 +1,4 @@
-package hello.advanced.app.proxy.v1.config;
+package hello.advanced.app.config;
 
 import hello.advanced.app.proxy.v1.*;
 import org.springframework.context.annotation.Bean;
@@ -21,4 +21,5 @@ public class AppV1Config {
     public OrderRepositoryV1 orderRepository() {
         return new OrderRepositoryImplV1();
     }
+
 }
