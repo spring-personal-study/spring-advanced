@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package tutorial;
+
+message Address {
+  string zipcode = 1;
+}
+
+message Cars {
+  enum Car {
+    FERRARI = 0;
+    KIA = 1;
+    FORD = 2;
+  }
+  optional Car car = 1;
+}
+
+message Person {
+  string name = 1;
+  optional int64 age = 2;
+  Address address = 3;
+  repeated Cars cars = 4;
+  reserved "foo", "bar";
+  bool active = 5;
+}
