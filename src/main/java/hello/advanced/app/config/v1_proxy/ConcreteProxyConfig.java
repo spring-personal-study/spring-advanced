@@ -1,10 +1,10 @@
-package hello.advanced.app.proxy.v1_proxy;
+package hello.advanced.app.config.v1_proxy;
 
 import hello.advanced.app.notproxy.trace.logtrace.LogTrace;
 import hello.advanced.app.notproxy.trace.logtrace.ThreadLocalLogTrace;
-import hello.advanced.app.proxy.v1_proxy.concrete_proxy.OrderControllerConcreteProxy;
-import hello.advanced.app.proxy.v1_proxy.concrete_proxy.OrderRepositoryConcreteProxy;
-import hello.advanced.app.proxy.v1_proxy.concrete_proxy.OrderServiceConcreteProxy;
+import hello.advanced.app.config.v1_proxy.concrete_proxy.OrderControllerConcreteProxy;
+import hello.advanced.app.config.v1_proxy.concrete_proxy.OrderRepositoryConcreteProxy;
+import hello.advanced.app.config.v1_proxy.concrete_proxy.OrderServiceConcreteProxy;
 import hello.advanced.app.proxy.v2.OrderControllerV2;
 import hello.advanced.app.proxy.v2.OrderRepositoryV2;
 import hello.advanced.app.proxy.v2.OrderServiceV2;

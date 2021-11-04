@@ -1,10 +1,9 @@
-package hello.advanced.app.proxy.v2_dynamicProxy;
+package hello.advanced.app.config.v2_dynamicProxy;
 
 import hello.advanced.app.notproxy.trace.TraceStatus;
 import hello.advanced.app.notproxy.trace.logtrace.LogTrace;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.PatternMatchUtils;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

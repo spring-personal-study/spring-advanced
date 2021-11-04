@@ -1,4 +1,4 @@
-package hello.advanced.app.proxy.v1_proxy.concrete_proxy;
+package hello.advanced.app.config.v1_proxy.concrete_proxy;
 
 import hello.advanced.app.notproxy.trace.TraceStatus;
 import hello.advanced.app.notproxy.trace.logtrace.LogTrace;

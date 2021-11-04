@@ -1,4 +1,4 @@
-package hello.advanced.app.proxy.v2_dynamicProxy;
+package hello.advanced.app.config.v2_dynamicProxy;
 
 import hello.advanced.app.notproxy.trace.logtrace.LogTrace;
 import hello.advanced.app.notproxy.trace.logtrace.ThreadLocalLogTrace;
@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.lang.reflect.Proxy;
 
-/*
-// 해당 설정을 사용하려면 DynamicProxyFilterConfig 를 비활성화하세요.
 @Configuration
 public class DynamicProxyBasicConfig {
 
@@ -50,4 +48,3 @@ public class DynamicProxyBasicConfig {
     }
 
 }
-*/
