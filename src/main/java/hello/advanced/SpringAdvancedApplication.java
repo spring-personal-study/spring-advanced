@@ -1,14 +1,14 @@
 package hello.advanced;
 
-import hello.advanced.app.config.v3_proxyfactory.ProxyFactoryConfigV2;
+import hello.advanced.app.config.v4_postprocessor.BeanPostProcessorConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
 @Slf4j
-@Import({ProxyFactoryConfigV2.class}) // 컴포넌트 스캔시 자동 등록하지 않는 설정파일을 스프링 빈으로 등록할 때 사용: 수동 스프링빈 등록
-@SpringBootApplication(scanBasePackages = "hello.advanced.app.proxy")
+//@Import({BeanPostProcessorConfig.class}) // 컴포넌트 스캔시 자동 등록하지 않는 설정파일을 스프링 빈으로 등록할 때 사용: 수동 스프링빈 등록
+@SpringBootApplication(scanBasePackages = {"hello.advanced.app.proxy.v1"})
 public class SpringAdvancedApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringAdvancedApplication.class, args);
