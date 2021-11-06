@@ -5,12 +5,25 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 
+/**
+ * StaticPart
+ * execution: 메소드 실행 조인 포인트 스프링 AOP 에서 가장 많이 사용하고, 기능도 복잡하다.
+ * within: 특정 타입 내의 조인 포인트를 매칭한다.
+ * args: 인자가 주어진 타입의 인스턴스인 조인 포인트
+ * this: 스프링 빈 객체(스프링 AOP 프록시)를 대상으로 하는 조인 포인트
+ * target: Target 객체(스프링 AOP 프록시가 가리키는 실제 대상)를 대상으로 하는 조인 포인트
+ * @target: 실행 객체의 클래스에 주어진 타입의 애너테이션이 있는 조인 포인트
+ * @within: 주어진 애너테이션이 있는 타입 내 조인 포인트
+ * @annotation: 메서드가 주어진 애너테이션을 가지고 있는 조인 포인트를 매칭
+ * @args: 전달된 실제 인수의 런타임 타입이 주어진 타입의 애너테이션을 갖는 조인 포인트
+ * bean: 스프링 전용 포인트컷 지시자, 빈의 이름으로 포인트컷을 지정한다.
+ */
 @Slf4j
 @Aspect
 public class AspectV6Advice {
+
     @Around("hello.advanced.aop.order.aop.PointCuts.allOrder()")
     public Object doLog(ProceedingJoinPoint joinPoint) throws Throwable {
-
         log.info("[log] {}", joinPoint.getSignature());
         return joinPoint.proceed();
     }
@@ -76,5 +89,4 @@ public class AspectV6Advice {
     public void doReturn2(JoinPoint joinPoint, Object result) {
         log.info("[return] {} return={}", joinPoint.getSignature(), result);
     }
-
 }
