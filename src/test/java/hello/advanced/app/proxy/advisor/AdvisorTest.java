@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.aop.ClassFilter;
 import org.springframework.aop.MethodMatcher;
 import org.springframework.aop.Pointcut;
+import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.NameMatchMethodPointcut;
@@ -38,11 +39,14 @@ public class AdvisorTest {
     }
 
     @Test
-    @DisplayName("직접 만든 포인트컷 사용")
+    @DisplayName("aspectJ 포인트컷 사용")
     void advisorTest2() {
         ServiceImpl target = new ServiceImpl();
         ProxyFactory proxyFactory = new ProxyFactory(target);
-        DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(new MyPointCut(), new TimeAdvice());
+        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("execution(* *..save*(..))");
+        DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(pointcut, new TimeAdvice());
+
         proxyFactory.addAdvisor(advisor);
         ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
         proxy.save(); // 로그 찍힘 (포인트컷 matches true)
@@ -53,6 +57,25 @@ public class AdvisorTest {
         log.info("proxyClass={}", proxy.getClass());
 
     }
+
+    @Test
+    @DisplayName("직접 만든 포인트컷 사용")
+    void advisorTest3() {
+        ServiceImpl target = new ServiceImpl();
+        ProxyFactory proxyFactory = new ProxyFactory(target);
+        DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor(new MyPointCut(), new TimeAdvice());
+
+        proxyFactory.addAdvisor(advisor);
+        ServiceInterface proxy = (ServiceInterface) proxyFactory.getProxy();
+        proxy.save(); // 로그 찍힘 (포인트컷 matches true)
+        proxy.find(); // 로그 안찍힘 (포인트컷 matches false)
+        log.info("advisor advice={}", advisor.getAdvice());
+        log.info("advisor pointcut={}", advisor.getPointcut());
+        log.info("proxyFactory={}", proxyFactory.getProxy());
+        log.info("proxyClass={}", proxy.getClass());
+
+    }
+
 
     static class MyPointCut implements Pointcut {
 
@@ -93,7 +116,7 @@ public class AdvisorTest {
 
     @Test
     @DisplayName("스프링이 제공하는 포인트컷 사용")
-    void advisorTest3() {
+    void advisorTest4() {
         ServiceInterface target = new ServiceImpl();
         ProxyFactory proxyFactory = new ProxyFactory(target);
         NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();
